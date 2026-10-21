@@ -53,61 +53,70 @@ whether you hit them:
 
 ## 1.
 
-<!-- Your criterion. It must name a number. -->
-
-
+Overall accuracy on the held-out test split is at least **0.60** on every one
+of the three seeds.
 
 **Why this target:**
-
-
+With five balanced labels a random guesser gets about 0.20, so 0.60 is three
+times chance: roughly 25 of my ~42 test headlines right. I kept it below 0.70
+because one post moves accuracy by about 2.4 points and all three seeds have to
+clear it, and I expect a steady trickle of errors on the `incident`/`legal` and
+`claim`/`legal` boundaries.
 
 ---
 
 ## 2.
 
-<!-- Your criterion. -->
-
-
+Every label has an F1 of at least **0.45** on the held-out test split, on
+every one of the three seeds.
 
 **Why this target:**
-
-
+Each label only gets about 8 test posts (53–60 examples × 15%), so one wrong
+post moves a label's F1 by about 0.1. That's why this floor is looser than the
+overall target. 0.45 is still more than double chance. I expect `claim` and
+`legal` to be lowest, because my decision rule sends a writer's verdict on a
+specific lawsuit to `legal`, not `claim`.
 
 ---
 
 ## 3.
 
-<!-- Your criterion. -->
-
-
+In `labels.csv`, the largest label has no more than **1.5×** as many examples
+as the smallest.
 
 **Why this target:**
-
-
+Right now it's 60 `analysis` to 53 `legal`, which is 1.13×. Any relabelling I
+do in unit 6 to fix a boundary moves posts between labels. At 1.5× the
+smallest label would be down to about 45 rows, or about 7 test posts. That's
+the point where one post swings its F1 by about 0.15 and the per-label
+criterion becomes noise.
 
 ---
 
 ## 4.
 
-<!-- Your criterion. -->
-
-
+My labels agree with the staff set on at least **70%** of the 30 staff posts
+(21 of 30), as reported by `agreement.py`.
 
 **Why this target:**
-
-
+The staff taxonomy (`analysis`/`hot_take`/`reaction`) isn't mine, and some of
+the 30 posts were picked because they're ambiguous, so I don't expect anywhere
+near 100%. But if I can't match written rules on 21 of 30, I'm applying rules
+loosely often enough that my own 280 labels would be suspect too.
 
 ---
 
 ## 5.
 
-<!-- Your criterion. -->
-
-
+On every one of the three seeds, accuracy on the most-confident third of test
+posts is at least **0.15** higher than accuracy on the least-confident third.
 
 **Why this target:**
-
-
+Each third is about 14 posts, so 0.15 is about 2 posts. That's the smallest gap
+I'd trust as more than noise. If the gap is smaller, the model's confidence
+tells me nothing about which predictions to trust. The `incident`/`legal`
+headlines that took me longest to label are where I'd expect it to be least
+sure.
 
 ---
 
