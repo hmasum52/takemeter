@@ -42,7 +42,13 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
-
+My community is r/technology. Most of its posts are news headlines about tech
+companies, AI, security, and the people and governments around them. TakeMeter
+reads a headline and asks one question: what is its main point? It sorts each
+post into one of five labels: `business` (a deliberate move), `incident`
+(something went wrong), `legal` (government, courts, regulators, or police
+acting), `claim` (an opinion, warning, or prediction), or `analysis`
+(something measured). It is DistilBERT fine-tuned on 280 headlines I labelled.
 
 ---
 
@@ -54,33 +60,80 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `business`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** The headline's point is a deliberate move by a company or
+person: a launch, layoff, deal, product, or plan.
 
 **Example 1:**
->
+> Netflix cuts 1,000 jobs as streaming giant seeks to boost engagement
 
 **Example 2:**
->
+> Uber begins self-driving robotaxi trial in Manchester
+
+### `incident`
+
+**Definition:** The headline's point is something that went wrong: a hack,
+attack, breach, outage, accident, or AI misbehaving.
+
+**Example 1:**
+> '123456' password linked to Denmark data breach affecting 8.8M people
+
+**Example 2:**
+> Hackers heat French supermarket fridges to 50C in large-scale cyber attack
+
+### `legal`
+
+**Definition:** The headline's point is government, courts, regulators, or
+police acting: a lawsuit, ruling, ban, fine, arrest, or bill.
+
+**Example 1:**
+> Florida can enforce state law barring young kids from social media, appeals court rules
+
+**Example 2:**
+> Eight states accuse OpenAI of coaching children to harm themselves in lawsuit
+
+### `claim`
+
+**Definition:** The headline's point is an opinion, warning, prediction, or
+demand, from a named person, an organization, or the writer.
+
+**Example 1:**
+> BlackRock's Larry Fink warns a data center moratorium could trigger a recession
+
+**Example 2:**
+> AI will make Americans dumber and poorer
+
+### `analysis`
+
+**Definition:** The headline's point is something measured: a number, study,
+or data result.
+
+**Example 1:**
+> Mobile phone sales plunge to lowest level in 14 years
+
+**Example 2:**
+> China chip exports jump 136% to US$45b as AI frenzy jacks up prices
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `incident` and `legal`
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
+Ask what the headline's main point is. If government, courts, regulators, or
+police are the ones acting, it's `legal`, even when the story started as an
+incident ("Grandmother falsely accused… sues" is `legal`, the lawsuit is the
+point). If something went wrong and nobody official has acted yet, it's
+`incident`. Any other deliberate move is `business`. An opinion, warning, or
+prediction, from a named person or the writer, is `claim`, unless it's an
+official action (sues, rules, bans), which is `legal`. A writer's verdict on a
+specific lawsuit, hack, or company move goes with that subject ("Lyft's
+settlement ignores the future" is `legal`); a general verdict ("AI will make
+Americans dumber") is `claim`. A number that is the finding ("sales plunge to
+lowest in 14 years") is `analysis`; a number that describes an action ("cuts
+1,000 jobs") goes with the action.
 
 
 
@@ -91,19 +144,28 @@
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public r/technology posts, pulled from
+Reddit's RSS/Atom feeds (no login needed) by `scripts/scrape_reddit.py`. After
+cleaning and de-duplicating, that gave 530 headlines in `data/raw_posts.json`.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+Pre-labelled with AI, then corrected. I labelled 30 headlines by hand first.
+Then I gave Claude my definitions and those 30 as the pattern, and had it label
+the rest of the pool. I read every label it gave and fixed the ones that broke
+my rules. Then I picked 280 so the five labels came out roughly even.
+`data/prelabels.csv` is the full corrected pool, and `labels.csv` is the 280.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `analysis` | 60 | 21.4% |
+| `business` | 57 | 20.4% |
+| `claim` | 56 | 20.0% |
+| `incident` | 54 | 19.3% |
+| `legal` | 53 | 18.9% |
+| **Total** | 280 | 100% |
 
 **Three hard cases**
 
@@ -111,25 +173,38 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "Lyft’s historic wage theft settlement fixes the past but
+> ignores the future | The $272 million settlement could compensate thousands
+> of drivers for past grievances. But it does little to change the rules
+> governing gig work today"
 >
-> *Could have been:*
+> *Could have been:* `claim` or `legal`
 >
-> *I chose, because:*
+> *I chose, because:* `legal`. It's the writer's opinion, which pulls toward
+> `claim`. But the opinion is about one specific lawsuit settlement, and my
+> rule sends a verdict on a specific lawsuit to that lawsuit's label. `claim`
+> is for general verdicts like "AI will make Americans dumber."
 
 **2.**
-> *The post:*
+> *The post:* "Microsoft docs warned its AI was starting a 'doom loop' that
+> could gut the web"
 >
-> *Could have been:*
+> *Could have been:* `incident` or `claim`
 >
-> *I chose, because:*
+> *I chose, because:* `claim`. "Doom loop" sounds like something going wrong,
+> but nothing has broken yet. The point is a warning about what could happen,
+> and warnings are `claim`.
 
 **3.**
-> *The post:*
+> *The post:* "Paying for AI’s Data Centers Would Take 250 Million Jobs.
+> America Has 159 Million"
 >
-> *Could have been:*
+> *Could have been:* `claim` or `analysis`
 >
-> *I chose, because:*
+> *I chose, because:* `analysis`. The headline clearly argues that AI spending
+> doesn't add up, which reads like a `claim`. But the argument *is* the
+> computed number (250 million vs 159 million). When the number is the
+> finding, it's `analysis`.
 
 ---
 
@@ -137,16 +212,31 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+3 epochs, learning rate 2e-5, batch size 16, max length 128, seed 42.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** No hyperparameters. The
+one change is in `requirements.txt`: I pinned the CUDA build of torch
+(`torch==2.14.1+cu130`) so training runs on my laptop GPU (RTX 5060) instead
+of the CPU.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+196 train / 42 validation / 42 test (70/15/15, stratified).
 
+| Label | Test count |
+|---|---|
+| `business` | 9 |
+| `incident` | 8 |
+| `legal` | 8 |
+| `claim` | 8 |
+| `analysis` | 9 |
+
+No label is below 8, but all of them are right at that floor. One post swings a
+label's F1 by about 0.1, so expect per-label scores to move between seeds.
 
 
 ---
@@ -162,17 +252,30 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I had labelled 30 headlines by hand. I asked Claude to
+  label the rest of the data the same way, using my five definitions and those
+  30 as the pattern.
+- *What came back:* A label for every remaining post, some with a short note
+  explaining the call.
+- *What I changed:* I read every label and corrected the ones that broke my
+  rules. Then I picked the 280 for `labels.csv` so the classes stayed balanced.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Help writing the decision rule for my hardest boundary
+  (`incident` vs `legal`) and wording the acceptance criteria in
+  `criteria.md`.
+- *What came back:* A draft rule built around one question: who is acting? If
+  officials are acting, it's `legal`. If something went wrong, it's
+  `incident`.
+- *What I changed:* I added the clauses I needed from cases I hit while
+  labelling: a writer's verdict on a specific lawsuit goes with that lawsuit,
+  and a number that describes an action goes with the action, not
+  `analysis`. I also tied each criterion's reason to my own test counts.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** Yes. I labelled 30 posts by hand. Claude
+pre-labelled the rest following that pattern, and I read and corrected every
+one before choosing the final 280.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
