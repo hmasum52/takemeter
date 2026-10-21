@@ -1,0 +1,1 @@
+always use .venv to run any python code or notebook.
