@@ -353,8 +353,9 @@ more than the 10 points where the notebook says the dataset is too small or too
 lopsided for a stable measure. Macro F1 ranged 0.282 to 0.582. Seed 2024 is the
 outlier: 29 of its 42 test posts were predicted `analysis`, so it hardly
 learned the other four labels (`business` F1 0.000). That looks like the model
-failing to settle on this split, not a better or worse boundary, but I haven't
-confirmed it. The seed-42 number I started with was a friendly draw.
+failing to settle on this split, not a better or worse boundary. Its
+confidence is near uniform (see Diagnoses), which supports that, but I haven't
+confirmed it by training longer. The seed-42 number I started with was a friendly draw.
 
 ### Confusion matrix
 
@@ -372,9 +373,9 @@ Seed 42 (the first of the three; the notebook prints this seed's matrix).
 4 real `legal` posts were called `claim` and 0 real `claim` posts were called
 `legal`, so the model leans toward `claim` and didn't learn where my `legal`
 boundary stops (`analysis` posts also went to `claim` 4 times, so `claim` is
-where it dumps uncertain posts). That is the direction I'd expect if I applied
-the `legal` vs. `claim` rule inconsistently, which the agreement report should
-help check.
+where it dumps uncertain posts). That could be me applying the
+`legal` vs. `claim` rule inconsistently, but the agreement report can't check
+it (the staff taxonomy has no `legal`), so it stays unconfirmed. See Diagnoses.
 
 
 
@@ -387,13 +388,59 @@ help check.
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.60 on every seed | MISSED | 0.548 / 0.595 / 0.333. All three are under 0.60. The best seed is one post short (25 of 42 right; 0.60 needs 26). |
+| 2 | Lowest label F1 | ≥ 0.45 on every seed | MISSED | The lowest label each seed is `analysis` 0.267, `claim` 0.400 and `business` 0.000. Every seed has at least one label under 0.45 (seed 2024 has all five). |
+| 3 | Label balance | largest ≤ 1.5× smallest | MET | 60 `analysis` / 53 `legal` = 1.13×. `labels.csv` doesn't change by seed. |
+| 4 | Agreement with staff | ≥ 21 / 30 | MET | `agreement.py` gave 28 / 30 = 93%. It doesn't change by seed. |
+| 5 | Confidence gap | ≥ 0.15 on every seed | MISSED | Gaps are 0.143 / 0.286 / 0.143. Seeds 42 and 2024 are under 0.15, so "every seed" fails even though seed 7 clears it. |
 
 **Diagnoses**
+
+**Criterion 5, and the seed 2024 collapse: the model barely trained.**
+The model's top-class probability is 0.22 to 0.24 on a five-way choice, where
+pure guessing would be 0.20. It is nearly the same when the model is right and
+when it is wrong (0.228 vs 0.221, 0.242 vs 0.232, 0.222 vs 0.220), so its
+confidence says nothing about which predictions to trust. That is the missed
+gap. It also fits the setup: 196 training posts, 3 epochs, batch 16 is about 39
+optimizer steps at a learning rate of 2e-5. Seed 2024 shows what that looks
+like when it goes badly: it called 29 of 42 posts `analysis` and sent 7 of 9
+`business` posts there (`business` F1 0.000). The agreement report points the
+same way. I matched staff on 28 of 30, so my labels are not noisy enough to
+explain a model that is still close to a uniform guess. Cause: a task the
+model can't reach from this training budget, not a labelling problem. I have
+not confirmed it by training longer; that is the test for the next unit.
+
+**Criterion 2: `analysis`, `claim` and `legal` get swapped, a hard pair with a
+labelling part.**
+The matrices show which labels fail. Seed 42 sent 4 `legal` and 4 `analysis`
+posts to `claim`. Seed 7 sent 5 `claim` posts to `analysis`. `legal` recall is
+0.25 / 0.50 / 0.25, the weakest recall on every seed. These are the boundaries I
+flagged in hard case 3 and in the reason under criterion 2. The agreement
+report is the evidence for how much of this is me. Both of my disagreements
+were pile (a): the rule already decided them and I went by a surface cue
+instead (a quantity phrase pushed one to `analysis`, a lesson-like tone pushed
+the other to `hot_take`). That is the same kind of slip that would push an
+`analysis` headline toward `claim` in my own 280 labels, so I think part of
+this is my labelling. How much, I can't say, for three reasons. The staff
+taxonomy has no `legal`, so the agreement check can't test my `legal` vs.
+`claim` rule at all. Two misses in 30 is a small sample. And I only have counts,
+not which test posts were wrong, so I can't point at individual training posts
+I mislabelled. What I can say is that the model's confusion and my agreement
+slips are on the same sort of boundary, a number or a general statement doing
+the work of a claim.
+
+**Criterion 1: follows from the other two.**
+Seed 2024 is a real failure (0.333), caused by the collapse above. Seeds 42 and
+7 (0.548 and 0.595) are 3 and 1 posts short of the 26 needed. One post is 2.4
+points, so seed 7 missing by one post is close, but seed 42's `legal` and
+`analysis` posts landing in `claim` cost it more than that. Fixing the
+`analysis`/`claim`/`legal` confusion matters for seeds 42 and 7, and training
+longer matters for seed 2024.
+
+**What I'd fix first:** the undertraining. It is the larger effect (a 0.26
+accuracy swing), it explains two of the three misses, and it is cheap to test
+by changing the epoch count. The `analysis` boundary is my labelling
+candidate, but I don't have post-level evidence for it yet.
 
 <!-- For each miss: the cause, and how you know. The four common causes are:
      too few examples for a label, a boundary you applied inconsistently, a
