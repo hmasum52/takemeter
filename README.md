@@ -289,12 +289,24 @@ one before choosing the final 280.
 <!-- Both models on the same posts. `python baseline.py --trained results.json`
      prints this table for you. -->
 
+Both columns are scored on the same 42 held-out posts (`test_split.csv`), seed
+42. The baseline is `facebook/bart-large-mnli`, zero-shot, using my definitions
+from `label_definitions.txt`, run on the GPU.
+
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.476 | 0.548 | +0.071 |
+| Macro F1 | 0.430 | 0.533 | +0.103 |
+| F1 — `analysis` | 0.636 | 0.267 | -0.370 |
+| F1 — `business` | 0.200 | 0.762 | +0.562 |
+| F1 — `claim` | 0.519 | 0.435 | -0.084 |
+| F1 — `incident` | 0.462 | 0.800 | +0.338 |
+| F1 — `legal` | 0.333 | 0.400 | +0.067 |
+
+**Definitions vs. bare label names:** I also ran the baseline with no
+definitions, only the label names. Accuracy was 0.310 (macro F1 0.270) against
+0.476 (0.430) with definitions, so my definitions were worth about 0.17 accuracy.
+The table above uses the run with definitions.
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
@@ -307,6 +319,14 @@ the trained results.)
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
+My prediction was only partly right. The trained model beat the baseline on
+three labels (`business`, `incident`, `legal`) and overall (+0.07 accuracy, +0.10
+macro F1), but lost on `analysis` (-0.37) and `claim` (-0.08). With 42 test
+posts and 8-9 per label, one post moves a label's F1 by about 0.1, so only the
+big gaps (`business`, `incident`, `analysis`) are clearly more than noise. On
+this seed, fine-tuning helped most where the label depends on my own rules, and
+the baseline did better where the definition is close to plain English ("a
+number, study, or data result").
 
 
 

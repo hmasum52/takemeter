@@ -1,0 +1,256 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 42,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 42,
+    "accuracy": 0.47619047619047616,
+    "f1_macro": 0.42995078995078995,
+    "per_label": {
+      "analysis": {
+        "precision": 0.5384615384615384,
+        "recall": 0.7777777777777778,
+        "f1": 0.6363636363636364,
+        "support": 9
+      },
+      "business": {
+        "precision": 1.0,
+        "recall": 0.1111111111111111,
+        "f1": 0.19999999999999998,
+        "support": 9
+      },
+      "claim": {
+        "precision": 0.3684210526315789,
+        "recall": 0.875,
+        "f1": 0.5185185185185185,
+        "support": 8
+      },
+      "incident": {
+        "precision": 0.6,
+        "recall": 0.375,
+        "f1": 0.4615384615384615,
+        "support": 8
+      },
+      "legal": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "support": 8
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "A YouTuber says Meta's Muse gave his address to a Facebook Marketplace buyer: 'A guy just showed up at my door'",
+      "gold": "incident",
+      "predicted": "claim"
+    },
+    {
+      "text": "Microsoft docs warned its AI was starting a 'doom loop' that could gut the web",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "OpenAI\u2019s blockbuster Navier-Stokes proof isn\u2019t what we thought it was",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "ESA targets Anbernic emulation handhelds as \"superfake\" piracy enablers | But third-party sellers, not Anbernic, are the ones routinely selling ROM-filled SD cards.",
+      "gold": "legal",
+      "predicted": "claim"
+    },
+    {
+      "text": "Mars may be a hellhole, but the moon is not far behind",
+      "gold": "analysis",
+      "predicted": "claim"
+    },
+    {
+      "text": "AI coding agents generate more code, but not more software",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "New gene-editing technology brings genetic diseases closer to treatment",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Apple Says These Products Are Now Obsolete",
+      "gold": "business",
+      "predicted": "claim"
+    },
+    {
+      "text": "Microsoft is being suspended from program to apply for green cards for H-1B visa workers, Vance says",
+      "gold": "legal",
+      "predicted": "claim"
+    },
+    {
+      "text": "The Tragedy of AI Coding | AI-assisted software development could have liberated programmers. Instead, it has become the latest way for Big Tech to confine us",
+      "gold": "claim",
+      "predicted": "incident"
+    },
+    {
+      "text": "\u200bPoland Considers Selling Its 20 M142 HIMARS Systems in Favor of the K239 Chunmoo \u2014a Move With Significant Implications for European Countries",
+      "gold": "legal",
+      "predicted": "claim"
+    },
+    {
+      "text": "Epic Games vibe codes new launcher because 'programming is hard,' claims it starts 46% faster than Steam \u2014 Preview is available now but still in beta stage [Updated]",
+      "gold": "business",
+      "predicted": "analysis"
+    },
+    {
+      "text": "How Apple Puts Indigenous Languages on the iPhone Keyboard",
+      "gold": "business",
+      "predicted": "claim"
+    },
+    {
+      "text": "Nintendo confirms it has no plans to abandon physical Switch 2 games",
+      "gold": "business",
+      "predicted": "claim"
+    },
+    {
+      "text": "Tech platforms face a \u2018no-win\u2019 choice with livestreamed execution",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "Saudi employee charged with planting recording device at OpenAI office",
+      "gold": "legal",
+      "predicted": "legal"
+    },
+    {
+      "text": "AI\u2019s Giant Money Loop Is Drawing Foreign Cash Like 2008",
+      "gold": "business",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Scientists move a step toward quantum computers that can correct their own mistakes",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "French supermarkets suffer refrigerator shutdown after 'unprecedented' cyberattack",
+      "gold": "incident",
+      "predicted": "incident"
+    },
+    {
+      "text": "There's a reason billionaires keep bending the knee to Trump | After the president changed the term to \"super intelligence,\" the richest Americans rushed to use it.",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "An engineer built a Flock-like camera to detect police cars, says officers visited him afterward",
+      "gold": "incident",
+      "predicted": "legal"
+    },
+    {
+      "text": "Hackers Stole Flock\u2019s Camera Software, Revealing How the Company Tracks Cars and People",
+      "gold": "incident",
+      "predicted": "incident"
+    },
+    {
+      "text": "Senate probe accuses Big Tech of misleading public on AI data centers \u2014 massive 100 MW sites create only 100 jobs while securing lucrative GPU tax breaks; Senators question the number of permanent jobs, but companies refuse to divulge data",
+      "gold": "legal",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Next-generation EV battery targets faster charging with less weight",
+      "gold": "business",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Dragon Quest Creator Yuji Horii Thinks AI Is Amazing As He No Longer Needs To Code Or Draw To Make A Game",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "Legendary FPS level designer Richard \"Levelord\" Gray dies at 68 | Tributes pour in for the man behind iconic Duke Nukem 3D levels and much more.",
+      "gold": "incident",
+      "predicted": "claim"
+    },
+    {
+      "text": "The IMF has sharply raised its forecast for Taiwan\u2019s GDP growth to 10.7 percent this year, the highest projected rate in the Asia-Pacific region, amid the ongoing artificial intelligence (AI) boom.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Lyft\u2019s historic wage theft settlement fixes the past but ignores the future | The $272 million settlement could compensate thousands of drivers for past grievances. But it does little to change the rules governing gig work today",
+      "gold": "legal",
+      "predicted": "claim"
+    },
+    {
+      "text": "Investigating molecular and hemodynamic effects of LSD in the human brain - Nature Neuroscience",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Netflix Lays Off 6% of Employees, Elimination About 1,000 Jobs in Biggest Cutbacks to Date",
+      "gold": "business",
+      "predicted": "business"
+    },
+    {
+      "text": "Python 3.15 goes global with UTF-8 support. Decades of cross-platform character corruption finally comes to an end for Windows coders",
+      "gold": "business",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Eight states accuse OpenAI of coaching children to harm themselves in lawsuit",
+      "gold": "legal",
+      "predicted": "legal"
+    },
+    {
+      "text": "Sanders calls for artificial superintelligence ban after OpenAI CEO interview",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "'123456' password linked to Denmark data breach affecting 8.8M people",
+      "gold": "incident",
+      "predicted": "incident"
+    },
+    {
+      "text": "A Florida county discovered 14 Flock cameras nobody authorized, and 11 remain unclaimed",
+      "gold": "incident",
+      "predicted": "analysis"
+    },
+    {
+      "text": "OpenAI Used Its AI To Catch Employee Who Planted Listening Bug In Office, Employee Was Fired, Arrested By FBI",
+      "gold": "incident",
+      "predicted": "legal"
+    },
+    {
+      "text": "High Diesel Prices Bankrupted 16 Trucking Companies in Just 30 Days",
+      "gold": "analysis",
+      "predicted": "claim"
+    },
+    {
+      "text": "UK ministers explore compulsory AI safety reporting",
+      "gold": "legal",
+      "predicted": "incident"
+    },
+    {
+      "text": "AI is less regulated than milk, says Microsoft president",
+      "gold": "claim",
+      "predicted": "claim"
+    },
+    {
+      "text": "PS5 homebrew storefront with over 1,600 free PS5 and PS4 games taken down by Sony \u2014 company plays piracy whack-a-mole as two furthe",
+      "gold": "business",
+      "predicted": "claim"
+    },
+    {
+      "text": "Is Zelensky right to say data centre strikes have taken down Russian bots? (BBC Verify)",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Multi-material insulation delivers up to 10,000 x the stiffness",
+      "gold": "analysis",
+      "predicted": "analysis"
+    }
+  ]
+}
