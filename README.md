@@ -345,7 +345,7 @@ test posts per seed. Seed 42 reproduced `results.json` exactly (0.548 / 0.533).
 | 1. Overall accuracy | ≥ 0.60 on every seed | 0.548 | 0.595 | 0.333 | MISSED (all three under 0.60) |
 | 2. Lowest label F1 | ≥ 0.45 on every seed | 0.267 (`analysis`) | 0.400 (`claim`) | 0.000 (`business`) | MISSED (every seed has a label under 0.45) |
 | 3. Label balance | largest ≤ 1.5× smallest | 1.13× (60 `analysis` / 53 `legal`) | same | same | MET (`labels.csv` doesn't change by seed) |
-| 4. Agreement with staff | ≥ 21 / 30 | pending | pending | pending | Pending (`agreement.py`, Milestone 3) |
+| 4. Agreement with staff | ≥ 21 / 30 | 28 / 30 | same | same | MET (`agreement.py` doesn't change by seed) |
 | 5. Confidence gap (top third − bottom third accuracy) | ≥ 0.15 on every seed | 0.143 | 0.286 | 0.143 | MISSED (seeds 42 and 2024 are under 0.15) |
 
 **Spread:** accuracy moved 0.262 across the three seeds (0.333 to 0.595), far
@@ -416,7 +416,7 @@ help check.
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 28 / 30 = 93%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -439,24 +439,43 @@ help check.
      what you did across your own 200. -->
 
 **1.**
-> *The post:*
+> *The post:* "Anyone who races more than once a month isn't training, they're just collecting medals." (sp_011)
 >
-> *Staff said / I said:*
+> *Staff said / I said:* Staff `hot_take` / I said `analysis`.
 >
-> *My call, and why:*
+> *My call, and why:* Staff is right. `analysis` needs a checkable fact that
+> carries the argument (a stat, date, time, quote or named comparison). This
+> post has none: "once a month" is a threshold the writer picked, not a fact
+> anyone could check, and the claim is only asserted. It makes a general claim
+> with no support, which is the definition of `hot_take`. Rule 1 doesn't even
+> come into play, because there is no number to be decoration or load-bearing.
 >
-> *Which pile:*
+> *Which pile:* (a) — the rule covered it and I applied it loosely.
 
 **2.**
-> *The post:*
+> *The post:* "Just realised the shoes I set every PB in this year are the ones I bought by accident in the wrong size." (sp_029)
 >
-> *Staff said / I said:*
+> *Staff said / I said:* Staff `reaction` / I said `hot_take`.
 >
-> *My call, and why:*
+> *My call, and why:* Staff is right. Rule 2 splits `reaction` from `hot_take`
+> on whether the post is about the writer or about the world. This one is about
+> the writer: their own shoes, their own PBs, something they just noticed ("Just
+> realised"). It asserts nothing general. There's a possible lesson hiding in it
+> (fit matters less than people say), but nobody states it, and a post doesn't
+> become a `hot_take` because a reader could draw a claim out of it.
 >
-> *Which pile:*
+> *Which pile:* (a) — the rule covered it and I applied it loosely.
 
 **What the pattern in my disagreements tells me:**
+Both misses are pile (a), and neither is a win: the written rules already
+decide each one, so I applied them loosely instead of finding a gap in them.
+In both I went by surface cues (a quantity-sounding phrase pushed sp_011 to
+`analysis`, a lesson-like tone pushed sp_029 to `hot_take`) instead of asking
+rule 1's question (is there a checkable fact doing work?) or rule 2's question
+(is it about the writer or about the world?). Two posts out of 30 is a small
+sample, but if I did the same on my own 200, I'd expect my inconsistencies to
+sit on the same boundaries, between `analysis` and `hot_take` and between
+`hot_take` and `reaction`, and I'd look there first when diagnosing the model.
 
 
 
