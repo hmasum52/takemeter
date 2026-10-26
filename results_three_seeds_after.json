@@ -1,0 +1,260 @@
+[
+  {
+    "seed": 42,
+    "n_test": 42,
+    "accuracy": 0.7142857142857143,
+    "f1_macro": 0.7168853695324283,
+    "per_label": {
+      "business": {
+        "precision": 0.6363636363636364,
+        "recall": 0.7777777777777778,
+        "f1": 0.7,
+        "support": 9
+      },
+      "incident": {
+        "precision": 0.7777777777777778,
+        "recall": 0.875,
+        "f1": 0.8235294117647058,
+        "support": 8
+      },
+      "legal": {
+        "precision": 1.0,
+        "recall": 0.625,
+        "f1": 0.7692307692307693,
+        "support": 8
+      },
+      "claim": {
+        "precision": 0.6,
+        "recall": 0.75,
+        "f1": 0.6666666666666666,
+        "support": 8
+      },
+      "analysis": {
+        "precision": 0.7142857142857143,
+        "recall": 0.5555555555555556,
+        "f1": 0.625,
+        "support": 9
+      }
+    },
+    "confusion": {
+      "business": {
+        "business": 7,
+        "incident": 0,
+        "legal": 0,
+        "claim": 1,
+        "analysis": 1
+      },
+      "incident": {
+        "business": 1,
+        "incident": 7,
+        "legal": 0,
+        "claim": 0,
+        "analysis": 0
+      },
+      "legal": {
+        "business": 2,
+        "incident": 0,
+        "legal": 5,
+        "claim": 1,
+        "analysis": 0
+      },
+      "claim": {
+        "business": 1,
+        "incident": 0,
+        "legal": 0,
+        "claim": 6,
+        "analysis": 1
+      },
+      "analysis": {
+        "business": 0,
+        "incident": 2,
+        "legal": 0,
+        "claim": 2,
+        "analysis": 5
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.46074625849723816,
+      "mean_when_wrong": 0.3828164041042328,
+      "accuracy_most_confident_third": 0.9285714285714286,
+      "accuracy_least_confident_third": 0.5714285714285714,
+      "n_per_third": 14
+    },
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "torch_version": "2.14.1+cu130",
+    "max_length": 128
+  },
+  {
+    "seed": 7,
+    "n_test": 42,
+    "accuracy": 0.6666666666666666,
+    "f1_macro": 0.657078971939653,
+    "per_label": {
+      "business": {
+        "precision": 0.7,
+        "recall": 0.7777777777777778,
+        "f1": 0.7368421052631579,
+        "support": 9
+      },
+      "incident": {
+        "precision": 0.8,
+        "recall": 1.0,
+        "f1": 0.8888888888888888,
+        "support": 8
+      },
+      "legal": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5,
+        "f1": 0.5714285714285714,
+        "support": 8
+      },
+      "claim": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "support": 8
+      },
+      "analysis": {
+        "precision": 0.625,
+        "recall": 0.5555555555555556,
+        "f1": 0.5882352941176471,
+        "support": 9
+      }
+    },
+    "confusion": {
+      "business": {
+        "business": 7,
+        "incident": 1,
+        "legal": 1,
+        "claim": 0,
+        "analysis": 0
+      },
+      "incident": {
+        "business": 0,
+        "incident": 8,
+        "legal": 0,
+        "claim": 0,
+        "analysis": 0
+      },
+      "legal": {
+        "business": 1,
+        "incident": 1,
+        "legal": 4,
+        "claim": 2,
+        "analysis": 0
+      },
+      "claim": {
+        "business": 0,
+        "incident": 0,
+        "legal": 1,
+        "claim": 4,
+        "analysis": 3
+      },
+      "analysis": {
+        "business": 2,
+        "incident": 0,
+        "legal": 0,
+        "claim": 2,
+        "analysis": 5
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.5011360049247742,
+      "mean_when_wrong": 0.42463594675064087,
+      "accuracy_most_confident_third": 0.8571428571428571,
+      "accuracy_least_confident_third": 0.35714285714285715,
+      "n_per_third": 14
+    },
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "torch_version": "2.14.1+cu130",
+    "max_length": 128
+  },
+  {
+    "seed": 2024,
+    "n_test": 42,
+    "accuracy": 0.6190476190476191,
+    "f1_macro": 0.6173669467787115,
+    "per_label": {
+      "business": {
+        "precision": 0.75,
+        "recall": 0.6666666666666666,
+        "f1": 0.7058823529411765,
+        "support": 9
+      },
+      "incident": {
+        "precision": 0.5384615384615384,
+        "recall": 0.875,
+        "f1": 0.6666666666666666,
+        "support": 8
+      },
+      "legal": {
+        "precision": 0.75,
+        "recall": 0.375,
+        "f1": 0.5,
+        "support": 8
+      },
+      "claim": {
+        "precision": 0.4166666666666667,
+        "recall": 0.625,
+        "f1": 0.5,
+        "support": 8
+      },
+      "analysis": {
+        "precision": 1.0,
+        "recall": 0.5555555555555556,
+        "f1": 0.7142857142857143,
+        "support": 9
+      }
+    },
+    "confusion": {
+      "business": {
+        "business": 6,
+        "incident": 0,
+        "legal": 0,
+        "claim": 3,
+        "analysis": 0
+      },
+      "incident": {
+        "business": 0,
+        "incident": 7,
+        "legal": 0,
+        "claim": 1,
+        "analysis": 0
+      },
+      "legal": {
+        "business": 0,
+        "incident": 4,
+        "legal": 3,
+        "claim": 1,
+        "analysis": 0
+      },
+      "claim": {
+        "business": 0,
+        "incident": 2,
+        "legal": 1,
+        "claim": 5,
+        "analysis": 0
+      },
+      "analysis": {
+        "business": 2,
+        "incident": 0,
+        "legal": 0,
+        "claim": 2,
+        "analysis": 5
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.4491060674190521,
+      "mean_when_wrong": 0.36633604764938354,
+      "accuracy_most_confident_third": 0.7857142857142857,
+      "accuracy_least_confident_third": 0.35714285714285715,
+      "n_per_third": 14
+    },
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "torch_version": "2.14.1+cu130",
+    "max_length": 128
+  }
+]

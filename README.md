@@ -217,10 +217,11 @@ my rules. Then I picked 280 so the five labels came out roughly even.
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
 3 epochs, learning rate 2e-5, batch size 16, max length 128, seed 42.
 
-**Anything I changed from the defaults, and why:** No hyperparameters. The
-one change is in `requirements.txt`: I pinned the CUDA build of torch
+**Anything I changed from the defaults, and why:** No hyperparameters for the
+first runs. The one change is in `requirements.txt`: I pinned the CUDA build of torch
 (`torch==2.14.1+cu130`) so training runs on my laptop GPU (RTX 5060) instead
-of the CPU.
+of the CPU. For the Milestone 5 improvement I later raised epochs from 3 to 10
+(see The Improvement); the settings above are the before run.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
@@ -351,11 +352,11 @@ test posts per seed. Seed 42 reproduced `results.json` exactly (0.548 / 0.533).
 **Spread:** accuracy moved 0.262 across the three seeds (0.333 to 0.595), far
 more than the 10 points where the notebook says the dataset is too small or too
 lopsided for a stable measure. Macro F1 ranged 0.282 to 0.582. Seed 2024 is the
-outlier: 29 of its 42 test posts were predicted `analysis`, so it hardly
+outlier: 32 of its 42 test posts were predicted `analysis`, so it hardly
 learned the other four labels (`business` F1 0.000). That looks like the model
 failing to settle on this split, not a better or worse boundary. Its
-confidence is near uniform (see Diagnoses), which supports that, but I haven't
-confirmed it by training longer. The seed-42 number I started with was a friendly draw.
+confidence is near uniform (see Diagnoses), which supports that; I tested it by
+training longer in The Improvement. The seed-42 number I started with was a friendly draw.
 
 ### Confusion matrix
 
@@ -403,12 +404,12 @@ when it is wrong (0.228 vs 0.221, 0.242 vs 0.232, 0.222 vs 0.220), so its
 confidence says nothing about which predictions to trust. That is the missed
 gap. It also fits the setup: 196 training posts, 3 epochs, batch 16 is about 39
 optimizer steps at a learning rate of 2e-5. Seed 2024 shows what that looks
-like when it goes badly: it called 29 of 42 posts `analysis` and sent 7 of 9
+like when it goes badly: it called 32 of 42 posts `analysis` and sent 7 of 9
 `business` posts there (`business` F1 0.000). The agreement report points the
 same way. I matched staff on 28 of 30, so my labels are not noisy enough to
 explain a model that is still close to a uniform guess. Cause: a task the
 model can't reach from this training budget, not a labelling problem. I have
-not confirmed it by training longer; that is the test for the next unit.
+tested it by training longer; see The Improvement.
 
 **Criterion 2: `analysis`, `claim` and `legal` get swapped, a hard pair with a
 labelling part.**
@@ -530,21 +531,62 @@ sit on the same boundaries, between `analysis` and `hot_take` and between
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** one training setting, epochs from 3 to 10 (`EPOCHS` in the
+notebook). Learning rate 2e-5, batch size 16, max length 128, the three seeds,
+`labels.csv` and the split code are all unchanged. I picked 10 up front and did
+not try other values.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** the undertraining diagnosis under Criterion
+5 and the seed 2024 collapse, which I ranked "fix first". With 196 posts, 3
+epochs and batch 16 the model took about 39 optimizer steps, its top-class
+probability sat at 0.22 to 0.24 against 0.20 for a uniform guess, and seed 2024
+called 32 of 42 posts `analysis`. 10 epochs is about 130 steps.
 
 ### Run Log — After
 
+Same hardware and format as Run Log — Before: `cuda` (NVIDIA GeForce RTX 5060
+Laptop GPU, torch 2.14.1+cu130), 42 test posts per seed, from
+`results_three_seeds_after.json`.
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.60 on every seed | 0.714 | 0.667 | 0.619 | MET (seed 2024 is 26 of 42, exactly the 26 needed) |
+| 2. Lowest label F1 | ≥ 0.45 on every seed | 0.625 (`analysis`) | 0.500 (`claim`) | 0.500 (`legal`) | MET |
+| 3. Label balance | largest ≤ 1.5× smallest | 1.13× | same | same | MET (`labels.csv` unchanged) |
+| 4. Agreement with staff | ≥ 21 / 30 | 28 / 30 | same | same | MET (`agreement.py` unchanged) |
+| 5. Confidence gap (top third − bottom third accuracy) | ≥ 0.15 on every seed | 0.357 | 0.500 | 0.429 | MET |
 
-**Did it help, and how do I know:**
+Before and after, side by side:
+
+| Measure | Before (3 epochs) 42 / 7 / 2024 | After (10 epochs) 42 / 7 / 2024 |
+|---|---|---|
+| Accuracy | 0.548 / 0.595 / 0.333 (spread 0.262) | 0.714 / 0.667 / 0.619 (spread 0.095) |
+| Macro F1 | 0.533 / 0.582 / 0.282 | 0.717 / 0.657 / 0.617 |
+| Lowest label F1 | 0.267 / 0.400 / 0.000 | 0.625 / 0.500 / 0.500 |
+| Confidence gap | 0.143 / 0.286 / 0.143 | 0.357 / 0.500 / 0.429 |
+| Posts predicted `analysis` (true 9) | 6 / 13 / 32 | 7 / 8 / 5 |
+| Mean top-class probability, right / wrong | 0.228 / 0.221, 0.242 / 0.232, 0.222 / 0.220 | 0.461 / 0.383, 0.501 / 0.425, 0.449 / 0.366 |
+
+**Did it help, and how do I know:** Yes. Going from 3 to 10 epochs lifted
+accuracy on every seed (+0.166, +0.072, +0.286) and turned the three missed
+criteria (1, 2, 5) into met ones. The clearest evidence is seed 2024: it no
+longer collapses, with `analysis` predictions falling from 32 to 5 and
+`business` F1 going from 0.000 to 0.706. The model's confidence also now
+carries information. It was about the same when right and wrong before (gap of
+0.01 or less) and is about 0.08 higher when right now, and the accuracy gap
+between its most and least confident thirds went from 0.143 / 0.286 / 0.143
+to 0.357 / 0.500 / 0.429. That is what the undertraining diagnosis predicted, so I take it
+as confirmed rather than just compatible.
+
+Three things limit how far to trust this. First, the margins are thin: seed
+2024's accuracy is exactly on the 0.60 line (26 of 42). With 42 test posts one
+post is 2.4 points, and with 14 posts per confidence third one post moves the
+gap 7 points. The accuracy spread across seeds is still 0.095, more than 5
+points, so I would not quote 0.714 as the model's accuracy. Second, I tested
+one value (10 epochs), so I don't know if 6 or 20 would do better or if 10 has
+started to overfit, and I did not look at the validation curve to check. Third,
+the criteria were written before this change and I haven't moved them. They
+are met, but the model is still far from good: the best seed is 30 of 42.
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -555,13 +597,31 @@ sit on the same boundaries, between `analysis` and `hot_take` and between
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+All five criteria are met after the 10-epoch run, so none is still missed. What
+is still broken is how close the margins are and where the errors sit.
 
-
+- **Criterion 1 passes with no margin.** Seed 2024 is 26 of 42, exactly the
+  threshold. What I'd do: more data, since 196 training posts is why one split
+  can still land on the line. I stopped because the milestone allows one change.
+- **`legal` is the weakest label.** Its recall is 0.625 / 0.500 / 0.375, and
+  seed 2024 sent 4 of 8 `legal` posts to `incident`. The agreement check can't
+  test my `legal` rule (the staff taxonomy has no `legal`), so I can't say how
+  much of this is my labelling. What I'd do next: reread the `legal` posts that
+  get missed and relabel the `analysis`/`claim`/`legal` boundary by applying the
+  rule once, which I flagged as my labelling candidate and didn't test here.
+- **I didn't test other epoch counts or the learning rate.** 10 worked; I don't
+  know if it is the best value or if it overfits, and the validation curve is the
+  thing to check first.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
+I meant `legal` to be "government, courts, regulators or police acting" and
+`claim` to be an opinion, warning, prediction or demand. After 10 epochs the
+model has mostly learned that split (seed 42's `legal` posts called `claim`
+fell from 4 to 1), but it still sends 2 `analysis` posts to `claim` on every
+seed and sends `legal` posts to `business` or `incident` (4 of 8 to `incident`
+on seed 2024). So the matrix shows which boundaries it still doesn't hold; I
+haven't checked why.
 
 
 
