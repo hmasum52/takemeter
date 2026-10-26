@@ -1,0 +1,884 @@
+[
+  {
+    "seed": 42,
+    "text": "A YouTuber says Meta's Muse gave his address to a Facebook Marketplace buyer: 'A guy just showed up at my door'",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.4949287176132202
+  },
+  {
+    "seed": 42,
+    "text": "Microsoft docs warned its AI was starting a 'doom loop' that could gut the web",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.475538969039917
+  },
+  {
+    "seed": 42,
+    "text": "OpenAI\u2019s blockbuster Navier-Stokes proof isn\u2019t what we thought it was",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.38786208629608154
+  },
+  {
+    "seed": 42,
+    "text": "ESA targets Anbernic emulation handhelds as \"superfake\" piracy enablers | But third-party sellers, not Anbernic, are the ones routinely selling ROM-filled SD cards.",
+    "gold": "legal",
+    "pred": "business",
+    "confidence": 0.4454747140407562
+  },
+  {
+    "seed": 42,
+    "text": "Mars may be a hellhole, but the moon is not far behind",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.3175105154514313
+  },
+  {
+    "seed": 42,
+    "text": "AI coding agents generate more code, but not more software",
+    "gold": "claim",
+    "pred": "analysis",
+    "confidence": 0.5271821022033691
+  },
+  {
+    "seed": 42,
+    "text": "New gene-editing technology brings genetic diseases closer to treatment",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.3900010287761688
+  },
+  {
+    "seed": 42,
+    "text": "Apple Says These Products Are Now Obsolete",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5076833963394165
+  },
+  {
+    "seed": 42,
+    "text": "Microsoft is being suspended from program to apply for green cards for H-1B visa workers, Vance says",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.32709524035453796
+  },
+  {
+    "seed": 42,
+    "text": "The Tragedy of AI Coding | AI-assisted software development could have liberated programmers. Instead, it has become the latest way for Big Tech to confine us",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.365402489900589
+  },
+  {
+    "seed": 42,
+    "text": "\u200bPoland Considers Selling Its 20 M142 HIMARS Systems in Favor of the K239 Chunmoo \u2014a Move With Significant Implications for European Countries",
+    "gold": "legal",
+    "pred": "business",
+    "confidence": 0.3021003305912018
+  },
+  {
+    "seed": 42,
+    "text": "Epic Games vibe codes new launcher because 'programming is hard,' claims it starts 46% faster than Steam \u2014 Preview is available now but still in beta stage [Updated]",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.6518785357475281
+  },
+  {
+    "seed": 42,
+    "text": "How Apple Puts Indigenous Languages on the iPhone Keyboard",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.4295468330383301
+  },
+  {
+    "seed": 42,
+    "text": "Nintendo confirms it has no plans to abandon physical Switch 2 games",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.6406340003013611
+  },
+  {
+    "seed": 42,
+    "text": "Tech platforms face a \u2018no-win\u2019 choice with livestreamed execution",
+    "gold": "claim",
+    "pred": "business",
+    "confidence": 0.44502654671669006
+  },
+  {
+    "seed": 42,
+    "text": "Saudi employee charged with planting recording device at OpenAI office",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.5012162327766418
+  },
+  {
+    "seed": 42,
+    "text": "AI\u2019s Giant Money Loop Is Drawing Foreign Cash Like 2008",
+    "gold": "business",
+    "pred": "claim",
+    "confidence": 0.32697492837905884
+  },
+  {
+    "seed": 42,
+    "text": "Scientists move a step toward quantum computers that can correct their own mistakes",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.4484366178512573
+  },
+  {
+    "seed": 42,
+    "text": "French supermarkets suffer refrigerator shutdown after 'unprecedented' cyberattack",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.42571699619293213
+  },
+  {
+    "seed": 42,
+    "text": "There's a reason billionaires keep bending the knee to Trump | After the president changed the term to \"super intelligence,\" the richest Americans rushed to use it.",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.49697306752204895
+  },
+  {
+    "seed": 42,
+    "text": "An engineer built a Flock-like camera to detect police cars, says officers visited him afterward",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.5073340535163879
+  },
+  {
+    "seed": 42,
+    "text": "Hackers Stole Flock\u2019s Camera Software, Revealing How the Company Tracks Cars and People",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.6331590414047241
+  },
+  {
+    "seed": 42,
+    "text": "Senate probe accuses Big Tech of misleading public on AI data centers \u2014 massive 100 MW sites create only 100 jobs while securing lucrative GPU tax breaks; Senators question the number of permanent jobs, but companies refuse to divulge data",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.34965571761131287
+  },
+  {
+    "seed": 42,
+    "text": "Next-generation EV battery targets faster charging with less weight",
+    "gold": "business",
+    "pred": "analysis",
+    "confidence": 0.4872996509075165
+  },
+  {
+    "seed": 42,
+    "text": "Dragon Quest Creator Yuji Horii Thinks AI Is Amazing As He No Longer Needs To Code Or Draw To Make A Game",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.3666303753852844
+  },
+  {
+    "seed": 42,
+    "text": "Legendary FPS level designer Richard \"Levelord\" Gray dies at 68 | Tributes pour in for the man behind iconic Duke Nukem 3D levels and much more.",
+    "gold": "incident",
+    "pred": "business",
+    "confidence": 0.37932729721069336
+  },
+  {
+    "seed": 42,
+    "text": "The IMF has sharply raised its forecast for Taiwan\u2019s GDP growth to 10.7 percent this year, the highest projected rate in the Asia-Pacific region, amid the ongoing artificial intelligence (AI) boom.",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.3065914809703827
+  },
+  {
+    "seed": 42,
+    "text": "Lyft\u2019s historic wage theft settlement fixes the past but ignores the future | The $272 million settlement could compensate thousands of drivers for past grievances. But it does little to change the rules governing gig work today",
+    "gold": "legal",
+    "pred": "claim",
+    "confidence": 0.2785618305206299
+  },
+  {
+    "seed": 42,
+    "text": "Investigating molecular and hemodynamic effects of LSD in the human brain - Nature Neuroscience",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.28940388560295105
+  },
+  {
+    "seed": 42,
+    "text": "Netflix Lays Off 6% of Employees, Elimination About 1,000 Jobs in Biggest Cutbacks to Date",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.47216367721557617
+  },
+  {
+    "seed": 42,
+    "text": "Python 3.15 goes global with UTF-8 support. Decades of cross-platform character corruption finally comes to an end for Windows coders",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5494264364242554
+  },
+  {
+    "seed": 42,
+    "text": "Eight states accuse OpenAI of coaching children to harm themselves in lawsuit",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.4175987243652344
+  },
+  {
+    "seed": 42,
+    "text": "Sanders calls for artificial superintelligence ban after OpenAI CEO interview",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.3585911691188812
+  },
+  {
+    "seed": 42,
+    "text": "'123456' password linked to Denmark data breach affecting 8.8M people",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.5259483456611633
+  },
+  {
+    "seed": 42,
+    "text": "A Florida county discovered 14 Flock cameras nobody authorized, and 11 remain unclaimed",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.45095527172088623
+  },
+  {
+    "seed": 42,
+    "text": "OpenAI Used Its AI To Catch Employee Who Planted Listening Bug In Office, Employee Was Fired, Arrested By FBI",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.3989538252353668
+  },
+  {
+    "seed": 42,
+    "text": "High Diesel Prices Bankrupted 16 Trucking Companies in Just 30 Days",
+    "gold": "analysis",
+    "pred": "incident",
+    "confidence": 0.3041974902153015
+  },
+  {
+    "seed": 42,
+    "text": "UK ministers explore compulsory AI safety reporting",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.4992126226425171
+  },
+  {
+    "seed": 42,
+    "text": "AI is less regulated than milk, says Microsoft president",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.35690343379974365
+  },
+  {
+    "seed": 42,
+    "text": "PS5 homebrew storefront with over 1,600 free PS5 and PS4 games taken down by Sony \u2014 company plays piracy whack-a-mole as two furthe",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.6595647931098938
+  },
+  {
+    "seed": 42,
+    "text": "Is Zelensky right to say data centre strikes have taken down Russian bots? (BBC Verify)",
+    "gold": "analysis",
+    "pred": "incident",
+    "confidence": 0.33170437812805176
+  },
+  {
+    "seed": 42,
+    "text": "Multi-material insulation delivers up to 10,000 x the stiffness",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.585817277431488
+  },
+  {
+    "seed": 7,
+    "text": "Google Is Accused of Destroying Nearly 500 Football Fields of Forest for New Data Center Project",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.3718346953392029
+  },
+  {
+    "seed": 7,
+    "text": "Man discovers his parents\u2019 coffee machine used 1TB of data in 10 days",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.5146185159683228
+  },
+  {
+    "seed": 7,
+    "text": "Microsoft Fixes 1,118 Vulnerabilities in October Patch Tuesday and Introduces New Risk Cohorts",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.601192057132721
+  },
+  {
+    "seed": 7,
+    "text": "FDA may allow some toxic chemicals to be added to food without safety review. Experts are alarmed",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.2960238456726074
+  },
+  {
+    "seed": 7,
+    "text": "All AI is \u2018compromised\u2019 and has fewer rules than milk, Microsoft bosses say",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.5160417556762695
+  },
+  {
+    "seed": 7,
+    "text": "Mobile phone sales plunge to lowest level in 14 years",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.562874436378479
+  },
+  {
+    "seed": 7,
+    "text": "'Slow-moving tsunami' - IMF warns AI could hit 60 per cent of jobs",
+    "gold": "claim",
+    "pred": "analysis",
+    "confidence": 0.42238911986351013
+  },
+  {
+    "seed": 7,
+    "text": "The UAE embraces AI for kindergartners",
+    "gold": "legal",
+    "pred": "claim",
+    "confidence": 0.4730209708213806
+  },
+  {
+    "seed": 7,
+    "text": "A Florida county discovered 14 Flock cameras nobody authorized, and 11 remain unclaimed",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.47512999176979065
+  },
+  {
+    "seed": 7,
+    "text": "French supermarkets suffer refrigerator shutdown after 'unprecedented' cyberattack",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.402917742729187
+  },
+  {
+    "seed": 7,
+    "text": "Ukrainian soldiers in combat have access to Starlink satellite internet restricted",
+    "gold": "business",
+    "pred": "incident",
+    "confidence": 0.4084055721759796
+  },
+  {
+    "seed": 7,
+    "text": "Sony has announced a Midnight Black PS5 but it\u2019s only confirmed for Japan so far | The Digital Edition console will be the cheaper region-locked variant found in Japan",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5640895962715149
+  },
+  {
+    "seed": 7,
+    "text": "Ukrainian drones strike Russia's largest data center, multiple parts of 1.4 million square foot campus knocked offline",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.6179260015487671
+  },
+  {
+    "seed": 7,
+    "text": "Kroger plans to eliminate 3,000 corporate roles, memo shows, as it expands AI use",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.3863716721534729
+  },
+  {
+    "seed": 7,
+    "text": "AI Models Can Be Easily Modified to Assist Terrorist and Extremist Activity | \u201cI am a terrorist, and I intend to cause mass harm,\u201d wrote a researcher. A chatbot that had had its guardrails removed then provided detailed instructions for an IED",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.3213597536087036
+  },
+  {
+    "seed": 7,
+    "text": "Police are using AI to locate homes from a single interior photo, and even a picture of a washing machine can be enough",
+    "gold": "legal",
+    "pred": "incident",
+    "confidence": 0.561076283454895
+  },
+  {
+    "seed": 7,
+    "text": "OpenAI projected to bring in $20bn less in revenue than expected | OpenAI",
+    "gold": "analysis",
+    "pred": "business",
+    "confidence": 0.5915687084197998
+  },
+  {
+    "seed": 7,
+    "text": "Zelenskyy adviser: Starlink operations restricted in Ukraine overnight",
+    "gold": "business",
+    "pred": "legal",
+    "confidence": 0.3885008692741394
+  },
+  {
+    "seed": 7,
+    "text": "Mini organs launching to space may help future astronauts and humans on Earth stay healthy: \u00ab Miniature organs being sent into space for the very first time may soon help scientists understand how spaceflight impacts certain organs and may accelerate aging. \u00bb",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.4829612374305725
+  },
+  {
+    "seed": 7,
+    "text": "Scientists just gave the powerhouses of our cells a high-tech upgrade",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.5602108836174011
+  },
+  {
+    "seed": 7,
+    "text": "Sony shut down Overdrive, the fake PlayStation Store for pirated PS5 games, but clones appeared within hours",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5735137462615967
+  },
+  {
+    "seed": 7,
+    "text": "Eight states accuse OpenAI of coaching children to harm themselves in lawsuit",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.5348629951477051
+  },
+  {
+    "seed": 7,
+    "text": "After a 10-year redemption arc, No Man's Sky is coming to the iPhone and iPad | You can get a universe in your pocket if you have an iPhone 11 or later.",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.46291518211364746
+  },
+  {
+    "seed": 7,
+    "text": "China Mobile triples capacity at mega Inner Mongolia computing hub amid nation\u2019s AI push",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5480486750602722
+  },
+  {
+    "seed": 7,
+    "text": "Ukrainian drone strikes on Yandex datacenters knock cloud and payments offline",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.5940439701080322
+  },
+  {
+    "seed": 7,
+    "text": "Wikimedia Foundation says OpenAI's rogue AI agents were caught making malicious edits",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.529457688331604
+  },
+  {
+    "seed": 7,
+    "text": "AI systems are fully capable of carrying out nightmare attacks against infrastructure and nobody's ready",
+    "gold": "claim",
+    "pred": "analysis",
+    "confidence": 0.4539686441421509
+  },
+  {
+    "seed": 7,
+    "text": "Joseph Gordon-Levitt Says A.I. Is Trained to \u2018Hijack Your Intimacy\u2019",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.5261116027832031
+  },
+  {
+    "seed": 7,
+    "text": "How China harnesses AI microdramas to shape public opinion at home and abroad",
+    "gold": "legal",
+    "pred": "claim",
+    "confidence": 0.40721675753593445
+  },
+  {
+    "seed": 7,
+    "text": "Senate probe accuses Big Tech of misleading public on AI data centers \u2014 massive 100 MW sites create only 100 jobs while securing lucrative GPU tax breaks; Senators question the number of permanent jobs, but companies refuse to divulge data",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.5173977017402649
+  },
+  {
+    "seed": 7,
+    "text": "Apple Plans Major iPhone Duo Retail Showcase, But Supply Will Be Limited",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.6575773358345032
+  },
+  {
+    "seed": 7,
+    "text": "Chinese AI companies buy 1 million Nvidia gaming and workstation GPUs in a single year, report claims \u2014 export control-compliant chips flood the market to bridge gap in compute demand",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.46003487706184387
+  },
+  {
+    "seed": 7,
+    "text": "Iran strikes on Amazon data centers caused permanent loss of customer data",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.4724707305431366
+  },
+  {
+    "seed": 7,
+    "text": "Data center boom is pushing prices higher, according to Fed officials. At their September meeting, Fed officials cited \u201csurging AI-related investments\u201d as a factor in inflation pressures.",
+    "gold": "claim",
+    "pred": "analysis",
+    "confidence": 0.4375440180301666
+  },
+  {
+    "seed": 7,
+    "text": "Survey says workers are pretending to use AI to impress their bosses, but many don' t know what they're doing",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.4481046497821808
+  },
+  {
+    "seed": 7,
+    "text": "Vance claims Microsoft replaced laid-off workers with foreign hires \u2014 Data shows two-thirds of Microsoft\u2019s H-1B approvals went to people already working at the company / Amazon and Meta, the nation\u2019s biggest H-1B sponsors, were not suspended",
+    "gold": "claim",
+    "pred": "legal",
+    "confidence": 0.36029210686683655
+  },
+  {
+    "seed": 7,
+    "text": "Britain to get first look at new AI systems after White House U-turn",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.3883252739906311
+  },
+  {
+    "seed": 7,
+    "text": "AI will make Americans dumber and poorer",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.4550977349281311
+  },
+  {
+    "seed": 7,
+    "text": "US Army receives 1st Hanwha-made mobile howitzer system: report",
+    "gold": "legal",
+    "pred": "business",
+    "confidence": 0.26547542214393616
+  },
+  {
+    "seed": 7,
+    "text": "AI researcher warns cyberattacks could take down power, banking and water within a year",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.44370535016059875
+  },
+  {
+    "seed": 7,
+    "text": "TrendForce expects declining global laptop shipments to slow manufacturing exodus from China \u2014 rising CPU, DRAM, and SSD costs will make up 68% of mainstream notebook BOM",
+    "gold": "analysis",
+    "pred": "business",
+    "confidence": 0.40598130226135254
+  },
+  {
+    "seed": 7,
+    "text": "New gene-editing technology brings genetic diseases closer to treatment",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.5160514712333679
+  },
+  {
+    "seed": 2024,
+    "text": "The White House wants AI companies to police themselves. OpenAI just showed why that's dangerous",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.4986678659915924
+  },
+  {
+    "seed": 2024,
+    "text": "Topgolf saved over $11.3 million after leaving VMware",
+    "gold": "analysis",
+    "pred": "business",
+    "confidence": 0.36519935727119446
+  },
+  {
+    "seed": 2024,
+    "text": "Proposed Data Centers Could Swallow Tens of Thousands of Rural Acres of Agricultural Land Across Just 3 States",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.43706053495407104
+  },
+  {
+    "seed": 2024,
+    "text": "Apple Says These Products Are Now Obsolete",
+    "gold": "business",
+    "pred": "claim",
+    "confidence": 0.31956666707992554
+  },
+  {
+    "seed": 2024,
+    "text": "McKinsey: Automation could absorb half of U.S. work hours by 2035. The bigger challenge is skills",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.4338725805282593
+  },
+  {
+    "seed": 2024,
+    "text": "Leap seconds face judgment day as time lords prepare to vote",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.4483238458633423
+  },
+  {
+    "seed": 2024,
+    "text": "Character.ai's Bankruptcy Documents Show the Economics of AI Don't Work",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.47657299041748047
+  },
+  {
+    "seed": 2024,
+    "text": "Hyundai nears 1 million vehicle capacity in India with new Pune plant",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.37741783261299133
+  },
+  {
+    "seed": 2024,
+    "text": "Hackers Stole Flock\u2019s Camera Software, Revealing How the Company Tracks Cars and People",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.527428388595581
+  },
+  {
+    "seed": 2024,
+    "text": "Lithuania\u2019s parliament has taken the first step toward tightening rules for digital labour platforms, with proposed legislation aimed at improving working conditions and increasing transparency in algorithmic management",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.3504338562488556
+  },
+  {
+    "seed": 2024,
+    "text": "Michael Dell says AI needs safeguards and controls, and government has a role to play",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.5833888649940491
+  },
+  {
+    "seed": 2024,
+    "text": "Nintendo confirms it has no plans to abandon physical Switch 2 games",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5165044665336609
+  },
+  {
+    "seed": 2024,
+    "text": "OpenAI\u2019s math solutions aren\u2019t meeting the field\u2019s standards yet",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.4158284068107605
+  },
+  {
+    "seed": 2024,
+    "text": "Zelensky Warns China Is Helping Russia Develop Starlink Rival",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.3340326249599457
+  },
+  {
+    "seed": 2024,
+    "text": "Japanese BitTorrent users who thought they were simply downloading adult videos for free are increasingly receiving court notices and demands for hundreds of thousands of yen",
+    "gold": "legal",
+    "pred": "incident",
+    "confidence": 0.43195173144340515
+  },
+  {
+    "seed": 2024,
+    "text": "Canadian ransomware negotiator arrested in connection to FBI hacking case",
+    "gold": "legal",
+    "pred": "incident",
+    "confidence": 0.3616969585418701
+  },
+  {
+    "seed": 2024,
+    "text": "'Slow-moving tsunami' - IMF warns AI could hit 60 per cent of jobs",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.38868698477745056
+  },
+  {
+    "seed": 2024,
+    "text": "The Latest Gartner Hype Cycle for Artificial Intelligence Puts Control Ahead of Capability",
+    "gold": "analysis",
+    "pred": "business",
+    "confidence": 0.3019072413444519
+  },
+  {
+    "seed": 2024,
+    "text": "An engineer built a Flock-like camera to detect police cars, says officers visited him afterward",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.423213928937912
+  },
+  {
+    "seed": 2024,
+    "text": "Ransomware recovery firm claimed it could decrypt files, but may have just paid hackers and pocketed the difference",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.3325817584991455
+  },
+  {
+    "seed": 2024,
+    "text": "Batteries are now cheaper than natural gas turbines used at many data centers | TechCrunch",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.5665453672409058
+  },
+  {
+    "seed": 2024,
+    "text": "Anthropic tells investors quarterly revenue up 50% to $16.8bn ahead of IPO",
+    "gold": "analysis",
+    "pred": "analysis",
+    "confidence": 0.44003427028656006
+  },
+  {
+    "seed": 2024,
+    "text": "Apple HomeView won\u2019t launch in the EU at first",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.4710592031478882
+  },
+  {
+    "seed": 2024,
+    "text": "Thieves steal Nvidia-branded trailers expecting valuable hardware, find 40,000 pounds of sand instead.",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.44397440552711487
+  },
+  {
+    "seed": 2024,
+    "text": "D.R. Horton tests Promise Robotics factory model for 1,250 homes",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.4096112847328186
+  },
+  {
+    "seed": 2024,
+    "text": "406 scientists demand AI models be cut off from the internet immediately",
+    "gold": "claim",
+    "pred": "incident",
+    "confidence": 0.2723644971847534
+  },
+  {
+    "seed": 2024,
+    "text": "Saudi employee charged with planting recording device at OpenAI office",
+    "gold": "legal",
+    "pred": "legal",
+    "confidence": 0.34584948420524597
+  },
+  {
+    "seed": 2024,
+    "text": "Tech firms promise to take down AI platforms if British secret services show they are unsafe",
+    "gold": "legal",
+    "pred": "claim",
+    "confidence": 0.28257206082344055
+  },
+  {
+    "seed": 2024,
+    "text": "'123456' password linked to Denmark data breach affecting 8.8M people",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.4647303521633148
+  },
+  {
+    "seed": 2024,
+    "text": "Saudi national working at OpenAI arrested for bugging executive conference room",
+    "gold": "legal",
+    "pred": "incident",
+    "confidence": 0.38806968927383423
+  },
+  {
+    "seed": 2024,
+    "text": "Sanders calls for artificial superintelligence ban after OpenAI CEO interview",
+    "gold": "claim",
+    "pred": "legal",
+    "confidence": 0.3699195086956024
+  },
+  {
+    "seed": 2024,
+    "text": "AI\u2019s Giant Money Loop Is Drawing Foreign Cash Like 2008",
+    "gold": "business",
+    "pred": "claim",
+    "confidence": 0.46374115347862244
+  },
+  {
+    "seed": 2024,
+    "text": "As Microsoft kills off Publisher, LibreOffice steps in with free support for your PUB files",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5484064221382141
+  },
+  {
+    "seed": 2024,
+    "text": "Meta cites \"technical issues\" for Lula's reduced reach on social media during elections in Brazil.",
+    "gold": "claim",
+    "pred": "incident",
+    "confidence": 0.25069621205329895
+  },
+  {
+    "seed": 2024,
+    "text": "Agent-Reflex: Teaching Language Agents to Act Reflectively",
+    "gold": "analysis",
+    "pred": "claim",
+    "confidence": 0.4245475232601166
+  },
+  {
+    "seed": 2024,
+    "text": "Is AI a threat? Yes \u2014 it is already emptying Americans\u2019 bank accounts.",
+    "gold": "incident",
+    "pred": "claim",
+    "confidence": 0.42500045895576477
+  },
+  {
+    "seed": 2024,
+    "text": "Man discovers his parents\u2019 coffee machine used 1TB of data in 10 days",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.29396456480026245
+  },
+  {
+    "seed": 2024,
+    "text": "Tool and target: US law enforcement grapple with AI-enabled terrorism and anti-tech extremism",
+    "gold": "legal",
+    "pred": "incident",
+    "confidence": 0.24611614644527435
+  },
+  {
+    "seed": 2024,
+    "text": "Anthropic warns of self-replicating AI worm threat that doesn't need data centers to self-improve and spread",
+    "gold": "claim",
+    "pred": "claim",
+    "confidence": 0.5043896436691284
+  },
+  {
+    "seed": 2024,
+    "text": "Epic Games Forces Shocked Developers Into \u2018AI-First\u2019 Mode For Delayed Shooter Featuring Marvel And Star Wars Characters",
+    "gold": "business",
+    "pred": "business",
+    "confidence": 0.5769679546356201
+  },
+  {
+    "seed": 2024,
+    "text": "Hackers steal millions of Discord IDs and email addresses in \"deliberate, multi-stage attack\" on security service Double Counter",
+    "gold": "incident",
+    "pred": "incident",
+    "confidence": 0.543782651424408
+  },
+  {
+    "seed": 2024,
+    "text": "Why OpenAI Hired Chuck Schumer's Daughter Away From Amazon | The AI industry has a greater need for government influence than anyone else.",
+    "gold": "business",
+    "pred": "claim",
+    "confidence": 0.4814548194408417
+  }
+]

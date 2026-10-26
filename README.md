@@ -302,6 +302,18 @@ label's F1 by about 0.1, so expect per-label scores to move between seeds.
   the write-up against the JSON files, which caught a wrong figure (seed 2024
   predicted `analysis` 32 times, not the 29 first written).
 
+**Moment 5 (stretch: per-post evidence)**
+
+- *What I asked for:* A plan for the three stretch items, then `stretch.py`,
+  which retrains with the notebook's settings and saves each test post's
+  prediction and confidence. I chose the second improvement (label smoothing)
+  and the rule for the worst label (pooled recall over three seeds).
+- *What came back:* The script, the per-post files and a draft of the Stretch
+  results.
+- *What I changed:* I checked that the re-run matched
+  `results_three_seeds_after.json` before trusting it, and held the label
+  smoothing result to the same all-three-seeds rule as the epoch change.
+
 **Pre-labelling disclosure:** Yes. I labelled 30 posts by hand. Claude
 pre-labelled the rest following that pattern, and I read and corrected every
 one before choosing the final 280.
@@ -666,6 +678,114 @@ than the two labels that depend on my rules, and I haven't checked why.
 | **analysis** | 0 | 2 | 0 | 2 | 5 |
 
 *Seed 42 after the 10-epoch run, from `results_three_seeds_after.json`.*
+
+---
+
+## Stretch
+
+I'm adding all three optional items. This section is written before I run
+anything new; the results get filled in below the line once they exist.
+
+1. **A confidence check.** Criterion 5 only compares the top and bottom third.
+   I'll save each test post's confidence and look at accuracy across five
+   confidence bins, pooled over the three seeds.
+2. **A second improvement: label smoothing 0.1, on top of the 10 epochs.** I'm
+   changing one thing and measuring it the same way as the epoch change: three
+   seeds, same table. It only counts if it helps on all three seeds. I'm
+   guessing it won't move accuracy much, because the 196 training posts are
+   the likelier limit.
+3. **A per-label error write-up for `legal`.** The matrix on seed 42 alone
+   makes `analysis` look worst, but pooled over three seeds `legal` is right
+   only 12 of 24 times, the lowest recall. I'm using that pooled number to pick
+   the label, and I'll quote the missed `legal` posts.
+
+All of this needs per-post predictions, which the notebook never saved, so
+`stretch.py` retrains with the notebook's settings and writes them to
+`stretch_predictions_*.json`.
+
+### Results
+
+**Reproduction check.** The re-run of the 10-epoch model gives the same
+accuracy and macro F1 as `results_three_seeds_after.json` on all three seeds
+(0.714 / 0.667 / 0.619 and 0.717 / 0.657 / 0.617), so the per-post files
+describe the same models as the Run Log — After.
+
+**1. Confidence check.** I pooled the 126 test posts from the three seeds, ranked
+them by top-class probability and cut them into five bins of about 25
+(`stretch_predictions_after.json`).
+
+| Bin (least to most confident) | Confidence range | Posts | Accuracy |
+|---|---|---|---|
+| 1 | 0.246 to 0.359 | 26 | 0.462 |
+| 2 | 0.360 to 0.422 | 25 | 0.560 |
+| 3 | 0.423 to 0.471 | 25 | 0.600 |
+| 4 | 0.472 to 0.527 | 25 | 0.800 |
+| 5 | 0.527 to 0.660 | 25 | 0.920 |
+
+Yes: confident predictions are right more often. Accuracy rises in every bin,
+from 0.462 to 0.920, and by absolute confidence it is 0.919 on the 37 posts
+above 0.5 and 0.391 on the 23 below 0.35. Mean confidence is 0.471 when right
+and 0.390 when wrong. Before the epoch change those two were nearly equal
+(0.220 to 0.242 on every seed). The limits: "confident" is relative here, since
+the most sure post in the whole set is only 0.660 and a 5-way guess starts at
+0.20. Per seed, accuracy by third (least to most confident) is 0.57, 0.64, 0.93
+on seed 42, 0.36, 0.79, 0.86 on seed 7 and 0.36, 0.71, 0.79 on seed 2024, and 14
+posts per third is small.
+
+**2. Second improvement: label smoothing 0.1.** Everything else is the same as
+the 10-epoch run (`stretch_results_after2.json` against
+`stretch_results_after.json`).
+
+| | Seed 42 | Seed 7 | Seed 2024 |
+|---|---|---|---|
+| Accuracy, 10 epochs | 0.714 | 0.667 | 0.619 |
+| Accuracy, + smoothing | 0.714 | 0.667 | 0.643 |
+| Macro F1, 10 epochs | 0.717 | 0.657 | 0.617 |
+| Macro F1, + smoothing | 0.717 | 0.657 | 0.638 |
+| Lowest label F1 (both) | 0.625 | 0.500 | 0.500 |
+| Confidence gap, 10 epochs | 0.357 | 0.500 | 0.429 |
+| Confidence gap, + smoothing | 0.357 | 0.500 | 0.357 |
+
+Verdict: it does not count as an improvement. It helped on one seed (2024, one
+extra post right, 26 to 27 of 42) and did nothing on the other two, which is
+the "all three seeds" rule I set above failing. The one-post change on seed
+2024 is inside the noise of a 42-post test set. It also shrank the
+seed-2024 confidence gap from 0.429 to 0.357, still above 0.15. My guess that
+the 196 training posts are the limit is consistent with this but not proven.
+
+**3. `legal` error write-up.** Pooled over the three seeds, `legal` is right 12
+of 24 times (recall 0.50), and label smoothing doesn't change it (12 of 24
+again). The 12 misses split by what the model said instead
+(`stretch_predictions_after.json`):
+
+- **Predicted `incident` (5):** police using AI to find homes from a photo,
+  Japanese BitTorrent users getting court notices, a Canadian ransomware
+  negotiator arrested, a Saudi OpenAI employee arrested for bugging a
+  conference room, and US law enforcement dealing with AI-enabled terrorism.
+  These are the incident-versus-legal boundary from my taxonomy: an arrest or
+  court notice is an authority acting, but it also reads as an event
+  happening.
+- **Predicted `claim` (4):** the UAE embracing AI for kindergartners, China
+  using AI microdramas to shape opinion, tech firms promising to take down AI
+  platforms if British secret services show they are unsafe, and the Lyft wage
+  theft settlement headline. Each frames a government or court action as a
+  position or opinion.
+- **Predicted `business` (3):** the ESA targeting Anbernic handhelds, Poland
+  considering selling its HIMARS, and the US Army receiving a Hanwha howitzer.
+  Government buying, selling or enforcing against a company looks like a deal.
+
+Only 3 posts of other labels were predicted `legal` across the three seeds
+(Starlink restricted in Ukraine, a Vance claim about Microsoft, a Sanders
+call for an ASI ban), so the model under-predicts `legal` more than it
+over-predicts it. What this shows is that the misses cluster on the three
+nearest labels and not at random. What it doesn't show is whether the gold
+labels on these 12 posts are right: the staff taxonomy has no `legal`, so I
+can't check, and a few of them (the ESA post, the UAE post) could reasonably be
+relabelled. I haven't reread them against my rule yet.
+
+I didn't touch the Run Log — After, the verdicts, or any earlier number. The
+earlier sections' "no post-level evidence" notes were true when written; the
+`legal` paragraph above is the evidence they were waiting for.
 
 
 
