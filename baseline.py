@@ -90,12 +90,14 @@ def classify(texts, labels, definitions=None, quiet=False):
     exist here, which is why the brief's warning about replies "in the wrong
     format" doesn't apply to this route.
     """
+    import torch
     from transformers import pipeline
 
     if not quiet:
         print(f"Loading {ZERO_SHOT_MODEL} (first run downloads ~1.6 GB)…", flush=True)
 
-    classifier = pipeline("zero-shot-classification", model=ZERO_SHOT_MODEL)
+    device = 0 if torch.cuda.is_available() else -1
+    classifier = pipeline("zero-shot-classification", model=ZERO_SHOT_MODEL, device=device)
 
     definitions = definitions or {}
     # Give the model the definition where we have one; it discriminates far
