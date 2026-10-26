@@ -337,29 +337,44 @@ number, study, or data result").
 <!-- Five criteria across three seeds. The notebook's section 6 prints the
      spread table; the Target and Verdict columns are yours. -->
 
+Trained on `cuda` (NVIDIA GeForce RTX 5060 Laptop GPU, torch 2.14.1+cu130), 42
+test posts per seed. Seed 42 reproduced `results.json` exactly (0.548 / 0.533).
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.60 on every seed | 0.548 | 0.595 | 0.333 | MISSED (all three under 0.60) |
+| 2. Lowest label F1 | ≥ 0.45 on every seed | 0.267 (`analysis`) | 0.400 (`claim`) | 0.000 (`business`) | MISSED (every seed has a label under 0.45) |
+| 3. Label balance | largest ≤ 1.5× smallest | 1.13× (60 `analysis` / 53 `legal`) | same | same | MET (`labels.csv` doesn't change by seed) |
+| 4. Agreement with staff | ≥ 21 / 30 | pending | pending | pending | Pending (`agreement.py`, Milestone 3) |
+| 5. Confidence gap (top third − bottom third accuracy) | ≥ 0.15 on every seed | 0.143 | 0.286 | 0.143 | MISSED (seeds 42 and 2024 are under 0.15) |
+
+**Spread:** accuracy moved 0.262 across the three seeds (0.333 to 0.595), far
+more than the 10 points where the notebook says the dataset is too small or too
+lopsided for a stable measure. Macro F1 ranged 0.282 to 0.582. Seed 2024 is the
+outlier: 29 of its 42 test posts were predicted `analysis`, so it hardly
+learned the other four labels (`business` F1 0.000). That looks like the model
+failing to settle on this split, not a better or worse boundary, but I haven't
+confirmed it. The seed-42 number I started with was a friendly draw.
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
+Seed 42 (the first of the three; the notebook prints this seed's matrix).
 
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | business | incident | legal | claim | analysis |
+|---|---|---|---|---|---|
+| **business** | 8 | 0 | 0 | 1 | 0 |
+| **incident** | 1 | 6 | 0 | 1 | 0 |
+| **legal** | 0 | 0 | 2 | 4 | 2 |
+| **claim** | 1 | 0 | 0 | 5 | 2 |
+| **analysis** | 2 | 1 | 0 | 4 | 2 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
+4 real `legal` posts were called `claim` and 0 real `claim` posts were called
+`legal`, so the model leans toward `claim` and didn't learn where my `legal`
+boundary stops (`analysis` posts also went to `claim` 4 times, so `claim` is
+where it dumps uncertain posts). That is the direction I'd expect if I applied
+the `legal` vs. `claim` rule inconsistently, which the agreement report should
+help check.
 
 
 
