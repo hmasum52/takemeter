@@ -299,6 +299,10 @@ one before choosing the final 280.
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
+I predict the trained model will beat the baseline on all five labels, because
+it learned from my 196 labelled examples while the baseline only had the
+definitions. (Written after I ran the baseline alone, before I compared it to
+the trained results.)
 
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
