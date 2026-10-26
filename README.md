@@ -274,6 +274,34 @@ label's F1 by about 0.1, so expect per-label scores to move between seeds.
   and a number that describes an action goes with the action, not
   `analysis`. I also tied each criterion's reason to my own test counts.
 
+**Moment 3 (unit 6: spotting a pattern in my errors)**
+
+- *What I asked for:* I gave Claude the three-seed results and my agreement
+  report and asked what pattern they showed in the errors and which miss to
+  fix first.
+- *What came back:* It noticed that the top-class probability was only 0.22 to
+  0.24 on a five-way choice and nearly the same when the model was right and
+  when it was wrong, which I had not looked at. It tied that to the seed 2024
+  collapse and to the roughly 39 optimizer steps of a 3-epoch run, and ranked
+  undertraining first.
+- *What I changed:* I checked the probabilities against
+  `results_three_seeds_before.json` before using them. I also kept the
+  `analysis`/`claim`/`legal` boundary as a labelling candidate and not a finding,
+  because the agreement check can't test my `legal` rule and I have no post-level
+  evidence.
+
+**Moment 4 (unit 6: plan first, then implement)**
+
+- *What I asked for:* For each unit 6 milestone I had Claude write a plan
+  first and implement only after I had read and approved it. For the
+  improvement, the plan was to change one setting, `EPOCHS` from 3 to 10, with
+  no sweep, and rerun the three seeds as `RUN_LABEL="after"`.
+- *What came back:* The plan, then the change, the rerun and a draft of the
+  Run Log — After.
+- *What I changed:* I held it to that one setting. I checked each number in
+  the write-up against the JSON files, which caught a wrong figure (seed 2024
+  predicted `analysis` 32 times, not the 29 first written).
+
 **Pre-labelling disclosure:** Yes. I labelled 30 posts by hand. Claude
 pre-labelled the rest following that pattern, and I read and corrected every
 one before choosing the final 280.
@@ -601,27 +629,43 @@ All five criteria are met after the 10-epoch run, so none is still missed. What
 is still broken is how close the margins are and where the errors sit.
 
 - **Criterion 1 passes with no margin.** Seed 2024 is 26 of 42, exactly the
-  threshold. What I'd do: more data, since 196 training posts is why one split
-  can still land on the line. I stopped because the milestone allows one change.
-- **`legal` is the weakest label.** Its recall is 0.625 / 0.500 / 0.375, and
-  seed 2024 sent 4 of 8 `legal` posts to `incident`. The agreement check can't
-  test my `legal` rule (the staff taxonomy has no `legal`), so I can't say how
-  much of this is my labelling. What I'd do next: reread the `legal` posts that
-  get missed and relabel the `analysis`/`claim`/`legal` boundary by applying the
-  rule once, which I flagged as my labelling candidate and didn't test here.
-- **I didn't test other epoch counts or the learning rate.** 10 worked; I don't
-  know if it is the best value or if it overfits, and the validation curve is the
-  thing to check first.
+  threshold. What I'd do: add labelled posts, since 196 training posts is why
+  one split can still land on the line. Why I stopped: the milestone allows one
+  change, and I spent it on epochs.
+- **Criterion 5 is met but thin.** The gaps are 0.357 / 0.500 / 0.429 against
+  0.15, but each third is 14 posts, so one post moves a gap by 0.07. What I'd
+  do: more test posts or more seeds to see if the gap is stable. Why I stopped:
+  the same one-change limit, and more test posts means labelling more data.
+- **`legal` is the weakest label.** It gets 5 / 4 / 3 of 8 right on seeds 42 / 7
+  / 2024 (recall 0.625 / 0.500 / 0.375), and seed 2024 sent 4 of 8 to
+  `incident`. What I'd do: reread the missed `legal` posts and apply my
+  `legal` rule to them once more. Why I stopped: the staff taxonomy has no
+  `legal`, so the agreement check can't tell me how much of this is my
+  labelling, and I have no post-level evidence to act on yet.
+- **I didn't test other epoch counts or the learning rate.** What I'd do:
+  check the validation curve first, then try a few epoch counts. Why I stopped:
+  10 worked and I only had one change to spend, so I don't know if it is the
+  best value or if it overfits.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 I meant `legal` to be "government, courts, regulators or police acting" and
-`claim` to be an opinion, warning, prediction or demand. After 10 epochs the
-model has mostly learned that split (seed 42's `legal` posts called `claim`
-fell from 4 to 1), but it still sends 2 `analysis` posts to `claim` on every
-seed and sends `legal` posts to `business` or `incident` (4 of 8 to `incident`
-on seed 2024). So the matrix shows which boundaries it still doesn't hold; I
-haven't checked why.
+`analysis` to be a checkable fact doing the arguing, but the matrix below shows
+it gets only 5 of 8 `legal` and 5 of 9 `analysis` posts right, sending 2
+`analysis` posts to `claim` and 2 `legal` posts to `business`. The other seeds
+show the same thing (`analysis` is 5 of 9 on all three, and seed 2024 sent 4 of
+8 `legal` posts to `incident`), so it holds `incident` and `business` far better
+than the two labels that depend on my rules, and I haven't checked why.
+
+| true \ predicted | business | incident | legal | claim | analysis |
+|---|---|---|---|---|---|
+| **business** | 7 | 0 | 0 | 1 | 1 |
+| **incident** | 1 | 7 | 0 | 0 | 0 |
+| **legal** | 2 | 0 | 5 | 1 | 0 |
+| **claim** | 1 | 0 | 0 | 6 | 1 |
+| **analysis** | 0 | 2 | 0 | 2 | 5 |
+
+*Seed 42 after the 10-epoch run, from `results_three_seeds_after.json`.*
 
 
 
